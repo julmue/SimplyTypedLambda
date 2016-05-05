@@ -1,13 +1,10 @@
 {-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE DeriveFoldable #-}
 {-# LANGUAGE DeriveTraversable #-}
-{-# LANGUAGE RankNTypes #-}
-{-# LANGUAGE ScopedTypeVariables #-}
 
 module Language.STLambda.Nameless.Syntax where
 
 import Control.Monad (ap)
-import Control.Monad.Writer (Writer, writer, runWriter)
 
 import Bound
 import Prelude.Extras
@@ -28,7 +25,7 @@ data Exp n a
     | ProjR  (Exp n a)
     | InjL   (Exp n a) (Type n)
     | InjR   (Exp n a) (Type n)
-    | Case   (Scope () (Exp n) a) (Scope () (Exp n) a) (Exp n a)
+    | Case   (Alpha n) (Scope () (Exp n) a) (Alpha n) (Scope () (Exp n) a) (Exp n a)
     | TypeOf (Exp n a) (Type n)
     | Unit
     deriving (Eq, Show, Read, Functor, Foldable, Traversable)
@@ -59,7 +56,7 @@ instance Monad (Exp n) where
     (ProjR e) >>= g = ProjR (e >>= g)
     (InjL e t) >>= g = InjL (e >>= g) t
     (InjR e t) >>= g = InjR (e >>= g) t
-    (Case l r e) >>= g = Case (l >>>= g) (r >>>= g) (e >>= g)
+    (Case n1 l n2 r e) >>= g = Case n1 (l >>>= g) n2 (r >>>= g) (e >>= g)
     (TypeOf e t) >>= g = TypeOf (e >>= g) t
 
 instance Applicative (Exp n) where

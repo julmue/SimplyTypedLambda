@@ -23,6 +23,7 @@ library
                      , bound
                      , prelude-extras
                      , mtl
+                     , monad-gen
   default-language:    Haskell2010
 
 executable STLambda-exe
