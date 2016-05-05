@@ -1,7 +1,13 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module Language.STLambda.Nameless.Semantics where
+module Language.STLambda.Nameless.Semantics
+    (
+      normalOrder
+    , normalOrder1
+    , normalOrderTraced
+    , normalOrderTracedLimit
+    ) where
 
 import Control.Monad.Writer (Writer, writer, runWriter)
 

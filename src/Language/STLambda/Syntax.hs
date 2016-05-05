@@ -2,7 +2,13 @@
 {-# LANGUAGE DeriveFoldable #-}
 {-# LANGUAGE DeriveTraversable #-}
 
-module Language.STLambda.Syntax where
+module Language.STLambda.Syntax
+    (
+      Exp (..),
+      Type (..),
+      name,
+      uname
+    ) where
 
 import Bound
 import Bound.Unwrap (Fresh, Unwrap, unwrap, runUnwrap)
@@ -22,15 +28,15 @@ data Exp a =
     | Case a (Exp a) a (Exp a) (Exp a)
     | TypeOf (Exp a) (Type a)
     | Unit
-    deriving (Read, Show)
+    deriving (Read, Show, Functor, Foldable, Traversable)
 
 data Type a =
       TVar a
     | Top
     | Bot
-    | Arrow (Type a) (Type a)
     | Prod  (Type a) (Type a)
     | Sum   (Type a) (Type a)
+    | Arrow (Type a) (Type a)
     deriving (Eq, Show, Read, Functor, Foldable, Traversable)
 
 instance Eq a => Eq (Exp a) where
