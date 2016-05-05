@@ -1,0 +1,21 @@
+exp =
+      v
+    | exp exp
+    | λv:T.exp 
+    | let v = exp in exp
+    | {exp,exp}
+    | fst exp
+    | snd exp
+    | left exp : T
+    | right exp : T
+    | case exp inl v ⇒ exp inr v ⇒ exp
+    | exp : T
+    | triv
+
+Type =
+      V
+    | ⊤
+    | ⊥
+    | Type → Type
+    | Type × Type
+    | Type + Type
