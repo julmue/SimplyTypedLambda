@@ -127,8 +127,8 @@ stepNO injl@(InjL e t) = case stepNO e of
 stepNO injr@(InjR e t) = case stepNO e of
     Normalform _ -> Normalform injr
     Reducible e' -> Reducible (InjR e' t)
-stepNO (Case l _ (InjL e _)) = Reducible (instantiate1 e l)
-stepNO (Case _ r (InjR e _)) = Reducible (instantiate1 e r)
+stepNO (Case _ l _ _ (InjL e _)) = Reducible (instantiate1 e l)
+stepNO (Case _ _ _ r (InjR e _)) = Reducible (instantiate1 e r)
 stepNO (TypeOf e _) = Reducible e
 stepNO Unit = Normalform Unit
 stepNO n = Normalform n

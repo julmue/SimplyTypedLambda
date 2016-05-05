@@ -33,6 +33,9 @@ data Type a =
     | Sum   (Type a) (Type a)
     deriving (Eq, Show, Read, Functor, Foldable, Traversable)
 
+instance Eq a => Eq (Exp a) where
+   e1 == e2 = uname e1 == uname e2
+
 uname :: Eq a => Exp a -> NL.Exp a a
 uname (Var a) = NL.Var a
 uname (f `App` a) = (uname f) `NL.App` (uname a)
