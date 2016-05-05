@@ -4,10 +4,12 @@
 
 module Language.STLambda.Syntax
     (
-      Exp (..),
-      Type (..),
-      name,
-      uname
+      Exp (..)
+    , Type (..)
+    , name
+    , uname
+    , nameT
+    , unameT
     ) where
 
 import Bound

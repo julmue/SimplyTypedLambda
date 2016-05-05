@@ -7,6 +7,8 @@ module Language.STLambda.Nameless.Semantics
     , normalOrder1
     , normalOrderTraced
     , normalOrderTracedLimit
+    , TypeError
+    , typeOf
     ) where
 
 import Control.Monad.Writer (Writer, writer, runWriter)

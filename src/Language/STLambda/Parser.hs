@@ -1,4 +1,7 @@
-module Language.STLambda.Parser where
+module Language.STLambda.Parser
+    (
+      expression
+    )where
 
 import Control.Applicative
 

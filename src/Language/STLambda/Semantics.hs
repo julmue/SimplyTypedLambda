@@ -7,6 +7,7 @@ module Language.STLambda.Semantics
     , mkNormalOrder1
     , mkNormalOrderTraced
     , mkNormalOrderTracedLimit
+    , typeCheck
     ) where
 
 import Data.Bifunctor
@@ -50,3 +51,8 @@ mkNormalOrderTraced p = evalTraced p NLS.normalOrderTraced
 
 mkNormalOrderTracedLimit :: Eq a => Printer a -> Int -> N.Exp a -> (N.Exp a, [N.Exp a])
 mkNormalOrderTracedLimit p i = evalTraced p (NLS.normalOrderTracedLimit i)
+
+-- typeCheck :: Eq a => N.Exp a -> Either (NLS.TypeError a) (N.Type a)
+-- typeCheck = either id N.nameT . NLS.typeOf [] . N.uname
+typeCheck :: Eq a => N.Exp a -> Either (NLS.TypeError a) (N.Type a)
+typeCheck = second N.nameT . NLS.typeOf [] . N.uname

@@ -1,6 +1,7 @@
 module Language.STLambda.Pretty
     (
-      prettyPrint
+      printExpr
+    , printType
     ) where
 
 import Prelude
@@ -67,5 +68,8 @@ prodPrec  = 6
 sumPrec   = 5
 arrowPrec = 4
 
-prettyPrint :: Show a => Exp a -> String
-prettyPrint = render . prettyE 0
+printExpr :: Show a => Exp a -> String
+printExpr = render . prettyE 0
+
+printType :: Show a => Type a -> String
+printType = render . prettyT 0
