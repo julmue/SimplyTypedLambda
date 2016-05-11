@@ -1,4 +1,4 @@
-# stl - Interpreter for the simply typed lambda calculus
+# stl - Simply Typed Lambda Calculus Interpreter
 
 `lfo` is an interpreter for the simply typed lambda calculus. 
 The implementation is Church-style (explicitly typed, no type erasure, evaluation on typing derivations).
